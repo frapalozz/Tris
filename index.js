@@ -40,7 +40,11 @@ let finePartita = function(vincitore) {
     document.querySelector('h1').textContent = "Ha vinto";
     document.querySelector('button').style.display = "block";
 }
-
+let pareggio = function() {
+    turno.src = immagini[vincitore]
+    document.querySelector('h1').textContent = "Pareggio";
+    document.querySelector('button').style.display = "block";
+}
 
 
 
@@ -95,6 +99,10 @@ let checkWin = function() {
     if(griglia[2] == 1 && griglia[4] == 1 && griglia[6] == 1){
         finePartita(1);
     }
+    if(griglia[0] != null && griglia[1] != null && griglia[2] != null && griglia[3] != null &&
+       griglia[4] != null && griglia[5] != null && griglia[6] != null && griglia[7] != null && griglia[8] != null) {
+
+       }
 }
 
 
