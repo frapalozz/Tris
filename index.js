@@ -101,8 +101,8 @@ let checkWin = function() {
     }
     if(griglia[0] != null && griglia[1] != null && griglia[2] != null && griglia[3] != null &&
        griglia[4] != null && griglia[5] != null && griglia[6] != null && griglia[7] != null && griglia[8] != null) {
-
-       }
+        pareggio();
+    }
 }
 
 
