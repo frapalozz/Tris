@@ -1,9 +1,22 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
 body {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     height: 100vh;
     width: 100vw;
+}
+
+#display {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
 }
 
 #griglia {
@@ -21,4 +34,24 @@ body {
     align-items: center;
     justify-content: center;
     font-size: 70px;
+}
+
+img {
+    width: 80px;
+}
+
+span {
+    max-width: 10px;
+    max-height: 10px;
+}
+
+button {
+    margin-top: 25px;
+    background-color: black;
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 8px;
+    font-size: 18px;
+    display: none;
 }
