@@ -1,3 +1,4 @@
+let partita = true;
 let stato = 0;
 let immagini = ['./src/Frame 1.jpg', './src/Frame 2.jpg'];
 let counter = 0;
@@ -14,24 +15,26 @@ for(let i = 0; i < 9; i++) {
 
 for(let i = 0; i < posizioni.length; i++) {
     posizioni[i].onclick = function (e) {
-        const index = i;
-        let immagine = document.createElement("img");
-        immagine.src = immagini[stato];
-        griglia[i] = stato;
+        if(griglia[i] === null && partita === true) {
+            const index = i;
+            let immagine = document.createElement("img");
+            immagine.src = immagini[stato];
+            griglia[i] = stato;
 
-        if(stato == 1) {
-            stato = 0;
-            turno.src = immagini[stato];
-        }
-        else {
-            stato = 1;
-            turno.src = immagini[stato]
-        }
+            if(stato == 1) {
+                stato = 0;
+                turno.src = immagini[stato];
+            }
+            else {
+                stato = 1;
+                turno.src = immagini[stato]
+            }
 
-        posizioni[i].appendChild(immagine);
-        counter++;
-        console.log(griglia);
-        checkWin();
+            posizioni[i].appendChild(immagine);
+            counter++;
+            console.log(griglia);
+            checkWin();
+        }
     }
 }
 
@@ -39,11 +42,13 @@ let finePartita = function(vincitore) {
     turno.src = immagini[vincitore]
     document.querySelector('h1').textContent = "Ha vinto";
     document.querySelector('button').style.display = "block";
+    partita = false
 }
 let pareggio = function(vincitore) {
     turno.src = "";
     document.querySelector('h1').textContent = "Pareggio";
     document.querySelector('button').style.display = "block";
+    partita = false;
 }
 
 
