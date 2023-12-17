@@ -1,44 +1,45 @@
+// PARTITA
 let partita = true;
-let attuale = 0;
-let stato = 0;
-let immagini = ['./src/Frame 1.jpg', './src/Frame 2.jpg'];
-let counter = 0;
+let player = 0; // PLAYER INIZIALE X = 0, O = 1
+let mosse = 0; // MOSSE TOTALI, MAX = 9
+
+// TURNO GIOCATORE, X = 0, O = 1
+let giocatoreAttuale = 0;
+let immaginiGiocatore = ['./src/Frame 1.jpg', './src/Frame 2.jpg'];
 let turno = document.getElementById('type');
-turno.src = immagini[stato];
+turno.src = immaginiGiocatore[giocatoreAttuale];
 
-let punteggioX = 0;
-let spanX = document.getElementById('punteggio0');
-let punteggioO = 0;
-let spanO = document.getElementById('punteggio1');
+// PUNTEGGIO GIOCATORI
+let punteggioX = 0; // GIOCATORE X
+let textX = document.getElementById('punteggio0');
+let punteggioO = 0; // GIOCATORE O
+let textO = document.getElementById('punteggio1');
 
+// GRIGLIA GIOCO
 let griglia = [null, null, null, null, null, null, null, null, null];
 
+// INIZIALIZZAZIONE GRIGLIA
 let posizioni = [];
 for(let i = 0; i < 9; i++) {
-    let pos = "" + (i+1);
-    posizioni.push(document.getElementById(pos));
+    posizioni.push(document.getElementById("" + (i+1)));
 }
 
+// EVENTI GRIGLIA
 for(let i = 0; i < posizioni.length; i++) {
-    posizioni[i].onclick = function (e) {
+    posizioni[i].onclick = function () {
         if(griglia[i] === null && partita === true) {
-            const index = i;
             let immagine = document.createElement("img");
             immagine.setAttribute('id', 'img' + i);
-            immagine.src = immagini[stato];
-            griglia[i] = stato;
+            immagine.src = immaginiGiocatore[giocatoreAttuale];
+            griglia[i] = giocatoreAttuale;
 
-            if(stato == 1) {
-                stato = 0;
-                turno.src = immagini[stato];
-            }
-            else {
-                stato = 1;
-                turno.src = immagini[stato]
-            }
+            // IMMAGINE TURNO GIOCATORE
+            if(giocatoreAttuale == 1) giocatoreAttuale--;
+            else giocatoreAttuale++;
+            turno.src = immaginiGiocatore[giocatoreAttuale];
 
             posizioni[i].appendChild(immagine);
-            counter++;
+            mosse++;
             console.log(griglia);
             checkWin();
         }
@@ -47,25 +48,22 @@ for(let i = 0; i < posizioni.length; i++) {
 
 let finePartita = function(vincitore) {
     
-    turno.src = immagini[vincitore]
+    turno.src = immaginiGiocatore[vincitore]
     if(vincitore == 0) {
-            punteggioX++; 
-            spanX.textContent = "" + punteggioX;
-        }   
-        else {
-            punteggioO++;
-            spanO.textContent = "" + punteggioO;
-        }
+        punteggioX++; 
+        textX.textContent = "" + punteggioX;
+    }   
+    else {
+        punteggioO++;
+        textO.textContent = "" + punteggioO;
+    }
 
-    console.log("X: " + punteggioX +"   O: " + punteggioO);
     document.querySelector('h1').textContent = "Ha vinto 🥳";
-    document.querySelector('button').style.display = "block";
     partita = false
 }
-let pareggio = function(vincitore) {
+let pareggio = function() {
     turno.src = "";
     document.querySelector('h1').textContent = "Pareggio 🤕";
-    document.querySelector('button').style.display = "block";
     partita = false;
 }
 
@@ -100,17 +98,21 @@ let checkWin = function() {
         }
     }
 
-    if(counter == 9) {
+    if(mosse == 9) {
         pareggio(0);
     }
 }
 
 
-document.querySelector('button').onclick = function(e) {
+document.querySelector('button').onclick = function() {
     document.querySelector('h1').textContent = "";
-    if(attuale != 1) attuale++; else attuale = 0;
-        stato = attuale;
-        turno.src = immagini[stato];
+
+    // GIOCATORE INIZIALE
+    if(player == 0) player++; else player--;
+    giocatoreAttuale = player;
+    turno.src = immaginiGiocatore[giocatoreAttuale];
+
+    // RESET GRIGLIA
     for(let i = 0; i < griglia.length; i++) {
         if(griglia[i] != null) {
             griglia[i] = null;
@@ -118,5 +120,5 @@ document.querySelector('button').onclick = function(e) {
         }
         partita = true;
     }
-    counter = 0;
+    mosse = 0;
 }
