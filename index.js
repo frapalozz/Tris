@@ -104,7 +104,7 @@ let checkWin = function() {
 }
 
 
-document.querySelector('button').onclick = function() {
+document.getElementById('btn').onclick = function() {
     document.querySelector('h1').textContent = "";
 
     // GIOCATORE INIZIALE

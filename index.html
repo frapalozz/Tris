@@ -8,13 +8,19 @@
 </head>
 <body>
     <div id="stato">
-        <p>X: <span id="punteggio0">0</span></p>
+        <div class="punteggio">
+            <p><span id="punteggio0">0</span></p>
+        </div>
+        
         <div id="display">
             <img id="type" src="" alt="">
-            <h1></h1>
         </div>
-        <p>O: <span id="punteggio1">0</span></p>
+
+        <div class="punteggio">
+            <p><span id="punteggio1">0</span></p>
+        </div>
     </div>
+    <h1> </h1>
     
     
     <div id="griglia">
@@ -29,7 +35,7 @@
         <div class="scacchi" id="9"></div>
         
     </div>
-    <button>Reset</button>
+    <button id="btn">Reset</button>
     <script src="index.js"></script>
 </body>
 </html>
