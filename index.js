@@ -73,55 +73,33 @@ let pareggio = function(vincitore) {
 
 
 let checkWin = function() {
-    if(griglia[0] == 0 && griglia[1] == 0 && griglia[2] == 0){
-        finePartita(0);
+    for(let i = 0; i < 7; i+=3) {
+        for(let j = 0; j < 2; j++) {
+            if(griglia[i] == j && griglia[i+1] == j && griglia[i+2] == j){
+                finePartita(j);
+                break;
+            }
+        }
     }
-    if(griglia[3] == 0 && griglia[4] == 0 && griglia[5] == 0){
-        finePartita(0);
+
+    for(let i = 0; i < 3; i++) {
+        for(let j = 0; j < 2; j++) {
+            if(griglia[i] == j && griglia[i+3] == j && griglia[i+6] == j){
+            finePartita(j);
+            break;
+            }
+        }
     }
-    if(griglia[6] == 0 && griglia[7] == 0 && griglia[8] == 0){
-        finePartita(0); 
+
+    for(let i = 0; i < 3; i+=2) {
+        for(let j = 0; j < 2; j++) {
+            if(griglia[i] == j && griglia[4] == j && griglia[8-i] == j){
+            finePartita(j);
+            break;
+            }
+        }
     }
-    if(griglia[0] == 0 && griglia[3] == 0 && griglia[6] == 0){
-        finePartita(0);
-    }
-    if(griglia[1] == 0 && griglia[4] == 0 && griglia[7] == 0){
-        finePartita(0);
-    }
-    if(griglia[2] == 0 && griglia[5] == 0 && griglia[8] == 0){
-        finePartita(0);
-    }
-    if(griglia[0] == 0 && griglia[4] == 0 && griglia[8] == 0){
-        finePartita(0);
-    }
-    if(griglia[2] == 0 && griglia[4] == 0 && griglia[6] == 0){
-        finePartita(0);
-    }
-    
-    if(griglia[0] == 1 && griglia[1] == 1 && griglia[2] == 1){
-        finePartita(1);
-    }
-    if(griglia[3] == 1 && griglia[4] == 1 && griglia[5] == 1){
-        finePartita(1);
-    }
-    if(griglia[6] == 1 && griglia[7] == 1 && griglia[8] == 1){
-        finePartita(1);
-    }
-    if(griglia[0] == 1 && griglia[3] == 1 && griglia[6] == 1){
-        finePartita(1);
-    }
-    if(griglia[1] == 1 && griglia[4] == 1 && griglia[7] == 1){
-        finePartita(1);
-    }
-    if(griglia[2] == 1 && griglia[5] == 1 && griglia[8] == 1){
-        finePartita(1);
-    }
-    if(griglia[0] == 1 && griglia[4] == 1 && griglia[8] == 1){
-        finePartita(1);
-    }
-    if(griglia[2] == 1 && griglia[4] == 1 && griglia[6] == 1){
-        finePartita(1);
-    }
+
     if(counter == 9) {
         pareggio(0);
     }
